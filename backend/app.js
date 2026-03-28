@@ -23,10 +23,11 @@ app.use(helmet());
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'http://localhost:3000',
     'https://assignmentt-clientt.vercel.app'
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Rate limit
