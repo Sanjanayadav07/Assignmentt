@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -40,6 +41,11 @@ app.use(express.urlencoded({ extended: true }));
 // Routes (FIXED PATHS)
 app.use('/api/v1/auth', require('./src/routes/auth'));
 app.use('/api/v1/tasks', require('./src/routes/tasks'));
+
+// Root route (for quick API check)
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
 
 // Health check
 app.get('/api/v1/health', (req, res) => {
