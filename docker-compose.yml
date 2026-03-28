@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: crypto-trading-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodb_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: crypto-trading-backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      MONGO_URI: mongodb://admin:password@mongodb:27017/crypto_trading?authSource=admin
+      NODE_ENV: development
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:
