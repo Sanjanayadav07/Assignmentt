@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 //const API_BASE_URL = '/api/v1'; // Proxy will handle localhost:5000
-const API_BASE_URL = 'http://localhost:5000/api/v1';
+const API_BASE_URL = 'https://assignmentt-self.vercel.app/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
