@@ -1,9 +1,7 @@
-
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-//const API_BASE_URL = '/api/v1'; // Proxy will handle localhost:5000
-const API_BASE_URL = 'https://assignmentt-self.vercel.app/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -12,7 +10,6 @@ const api = axios.create({
   },
 });
 
-// Request interceptor
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -21,7 +18,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Response interceptor
 api.interceptors.response.use(
   (response) => response,
   (error) => {
